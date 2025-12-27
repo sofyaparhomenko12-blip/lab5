@@ -1,0 +1,221 @@
+:root {
+  --bg: #050816;
+  --bg-accent: rgba(10, 25, 47, 0.92);
+  --card: rgba(17, 34, 64, 0.96);
+  --accent: #ff6961;
+  --accent-soft: rgba(255, 255, 255, 0.08);
+  --text-main: #f9fafb;
+  --text-muted: #9ca3af;
+  --snow: rgba(255, 255, 255, 0.6);
+  --border-soft: rgba(148, 163, 184, 0.35);
+}
+
+/* Фон страницы с «вечерним небом» */
+.page {
+  min-height: 100vh;
+  margin: 0;
+  padding: 3rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: radial-gradient(circle at top, #1f2937 0, #020617 55%, #000 100%);
+  position: relative;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text-main);
+}
+
+/* Лёгкий снег поверх фона */
+.snowLayer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(var(--snow) 1px, transparent 1px),
+    radial-gradient(var(--snow) 1px, transparent 1px);
+  background-size: 120px 120px;
+  background-position: 0 0, 60px 60px;
+  opacity: 0.3;
+  animation: snowFall 18s linear infinite;
+}
+
+@keyframes snowFall {
+  0% {
+    transform: translateY(-40px);
+  }
+  100% {
+    transform: translateY(40px);
+  }
+}
+
+/* Основной блок ежедневника */
+.container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 2.25rem 2.5rem;
+  border-radius: 24px;
+  background: linear-gradient(
+      135deg,
+      rgba(248, 250, 252, 0.02),
+      rgba(15, 23, 42, 0.9)
+    ),
+    var(--bg-accent);
+  box-shadow:
+    0 22px 45px rgba(15, 23, 42, 0.7),
+    0 0 0 1px rgba(148, 163, 184, 0.35);
+  backdrop-filter: blur(18px);
+}
+
+/* Шапка ежедневника */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+  border-bottom: 1px dashed var(--border-soft);
+  padding-bottom: 1.25rem;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.9rem;
+  letter-spacing: 0.04em;
+  font-weight: 650;
+}
+
+.subtitle {
+  margin: 0.25rem 0 0;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+/* Бейдж года / праздника */
+.badge {
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid rgba(248, 250, 252, 0.2);
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.12), transparent);
+  color: #fef9c3;
+}
+
+/* Строка настроения */
+.moodRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.moodLabel {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+}
+
+.moodValue {
+  font-size: 0.95rem;
+}
+
+/* Секция списка задач */
+.listSection {
+  margin-top: 1.25rem;
+}
+
+.sectionTitle {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+}
+
+/* Общие стили для формы добавления задач, если будешь стилизовать там */
+.inputGroup {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.4rem;
+}
+
+.inputGroup input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  font-size: 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: rgba(15, 23, 42, 0.85);
+  color: var(--text-main);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.inputGroup input::placeholder {
+  color: rgba(148, 163, 184, 0.8);
+}
+
+.inputGroup input:focus {
+  border-color: #f97373;
+  box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.4);
+  background: rgba(15, 23, 42, 0.96);
+}
+
+.inputGroup button {
+  padding: 0.8rem 1.4rem;
+  border-radius: 999px;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, #f97373, #fb7185);
+  color: #fefce8;
+  box-shadow: 0 12px 24px rgba(248, 113, 113, 0.45);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.inputGroup button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 14px 26px rgba(248, 113, 113, 0.6);
+}
+
+.inputGroup button:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 16px rgba(248, 113, 113, 0.35);
+}
+
+/* Адаптив */
+@media (max-width: 720px) {
+  .page {
+    padding: 1.75rem 0.75rem 2.5rem;
+  }
+
+  .container {
+    padding: 1.6rem 1.25rem 2rem;
+    border-radius: 20px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .inputGroup {
+    flex-direction: column;
+  }
+
+  .inputGroup button {
+    width: 100%;
+    text-align: center;
+  }
+}
